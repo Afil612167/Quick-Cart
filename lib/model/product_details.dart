@@ -1,73 +1,69 @@
 // To parse this JSON data, do
 //
-//     final productDetailsMode = productDetailsModeFromJson(jsonString);
+//     final productInfo = productInfoFromJson(jsonString);
 
 import 'dart:convert';
 
-ProductDetailsModel productDetailsModeFromJson(String str) =>
-    ProductDetailsModel.fromJson(json.decode(str));
+ProductInfo productInfoFromJson(String str) => ProductInfo.fromJson(json.decode(str));
 
-String productDetailsModeToJson(ProductDetailsModel data) =>
-    json.encode(data.toJson());
+String productInfoToJson(ProductInfo data) => json.encode(data.toJson());
 
-class ProductDetailsModel {
-  ProductDetailsModel({
-    required this.products,
-    required this.total,
-    required this.skip,
-    required this.limit,
-  });
+class ProductInfo {
+    ProductInfo({
+         this.products,
+         this.total,
+         this.skip,
+         this.limit,
+    });
 
-  List<Product> products;
-  int total;
-  int skip;
-  int limit;
+    List<Product>? products;
+    int? total;
+    int? skip;
+    int? limit;
 
-  factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
-      ProductDetailsModel(
-        products: List<Product>.from(
-            json["products"].map((x) => Product.fromJson(x))),
+    factory ProductInfo.fromJson(Map<String, dynamic> json) => ProductInfo(
+        products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
         total: json["total"],
         skip: json["skip"],
         limit: json["limit"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
-        "products": List<dynamic>.from(products.map((x) => x.toJson())),
+    Map<String, dynamic> toJson() => {
+        "products": List<dynamic>.from(products!.map((x) => x.toJson())),
         "total": total,
         "skip": skip,
         "limit": limit,
-      };
+    };
 }
 
 class Product {
-  Product({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.price,
-    required this.discountPercentage,
-    required this.rating,
-    required this.stock,
-    required this.brand,
-    required this.category,
-    required this.thumbnail,
-    required this.images,
-  });
+    Product({
+        required this.id,
+        required this.title,
+        required this.description,
+        required this.price,
+        required this.discountPercentage,
+        required this.rating,
+        required this.stock,
+        required this.brand,
+        required this.category,
+        required this.thumbnail,
+        required this.images,
+    });
 
-  int id;
-  String title;
-  String description;
-  int price;
-  double discountPercentage;
-  double rating;
-  int stock;
-  String brand;
-  String category;
-  String thumbnail;
-  List<String> images;
+    int id;
+    String title;
+    String description;
+    int price;
+    double discountPercentage;
+    double rating;
+    int stock;
+    String brand;
+    String category;
+    String thumbnail;
+    List<String> images;
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+    factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
         title: json["title"],
         description: json["description"],
@@ -79,9 +75,9 @@ class Product {
         category: json["category"],
         thumbnail: json["thumbnail"],
         images: List<String>.from(json["images"].map((x) => x)),
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "description": description,
@@ -93,5 +89,5 @@ class Product {
         "category": category,
         "thumbnail": thumbnail,
         "images": List<dynamic>.from(images.map((x) => x)),
-      };
+    };
 }
