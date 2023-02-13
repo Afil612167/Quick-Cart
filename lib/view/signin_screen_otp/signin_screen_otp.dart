@@ -88,15 +88,11 @@ class _SignInScreenOtpState extends State<SignInScreenOtp> {
                     image: AssetImage(facebookLogo),
                     height: height / 20,
                   ),
-                  // Image(
-                  //   image: AssetImage(),
-                  //   height: height / 20,
-                  // ),
                   SizedBox(
                     width: width / 8,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

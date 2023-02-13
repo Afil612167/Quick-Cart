@@ -1,16 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_store/functions/fetch_product_info.dart';
-import 'package:e_store/model/product_details.dart';
 import 'package:e_store/view/home_screen/widgets/SearchBar.dart';
 import 'package:e_store/view/home_screen/widgets/bell_icon.dart';
 import 'package:e_store/view/home_screen/widgets/catogory_listview.dart';
 import 'package:e_store/view/home_screen/widgets/catogory_viewall_text.dart';
 import 'package:e_store/view/home_screen/widgets/circle_avatar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:e_store/constants/colors.dart';
-
-import '../../functions/fetch_product_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           future: fetchProductInfo(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
-                              print(ProductInfo().products);
+                              print(snapshot.data!.products![0].brand.toString());
                               return Text(
                                 snapshot.data!.products![0].brand,
                                 style: TextStyle(

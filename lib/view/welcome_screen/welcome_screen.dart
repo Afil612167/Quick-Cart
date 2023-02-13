@@ -40,12 +40,13 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
               child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    "Welcome",
-                    style: TextStyle(
-                        fontSize: height / 35, fontWeight: FontWeight.w600),
-                  )),
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  "Welcome",
+                  style: TextStyle(
+                      fontSize: height / 35, fontWeight: FontWeight.w600),
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(top: height / 2),
