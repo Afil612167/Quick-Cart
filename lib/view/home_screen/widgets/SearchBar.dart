@@ -22,19 +22,20 @@ class SearchBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Row(
           children: [
+            Padding(padding: EdgeInsets.only(left: width / 15)),
+            const Icon(Icons.search_outlined),
             Padding(padding: EdgeInsets.only(left: width / 20)),
-            Icon(Icons.search_outlined),
-            Padding(padding: EdgeInsets.only(left: width / 20)),
-            Expanded(
+            const Expanded(
               child: TextField(
                 keyboardType: TextInputType.name,
-                decoration: InputDecoration(border: InputBorder.none,hintText: 'Search all'),
+                decoration: InputDecoration(
+                    border: InputBorder.none,hintText:'Search all'),
                 cursorColor: mainBlack,
               ),
             ),
-            Icon(Icons.filter_alt_outlined),
-            Padding(padding: EdgeInsets.only(right: width / 20)),
-            
+            Padding(
+              padding: EdgeInsets.only(right: width / 20),
+            )
           ],
         ));
   }

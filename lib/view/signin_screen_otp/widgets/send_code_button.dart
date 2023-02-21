@@ -1,5 +1,3 @@
-import 'package:e_store/view/home_screen/home_screen.dart';
-import 'package:e_store/view/signin_screen_otp/signin_screen_otp.dart';
 import 'package:e_store/view/singin_screen_otp_verification/signin_screen_otp_verification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
