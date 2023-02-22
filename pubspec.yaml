@@ -29,7 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  carousel_slider: ^4.2.1
+  bubble_bottom_bar: ^2.0.0
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
@@ -37,6 +37,7 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   http: ^0.13.5
+  intl_phone_field: ^3.1.0
   introduction_screen: ^3.1.4
   lottie: ^2.2.0
   pinput: ^2.2.21
@@ -73,7 +74,14 @@ flutter:
     - assets/images/google logo.png
     - assets/images/facebook icon.png
     - assets/lottie/19231-payment-successful.json
+    - assets/images/laptop_icon.png
     - assets/images/male user.png
+    - assets/images/Authentication.png
+    - assets/images/mobile_cat_icon.png
+    - assets/images/fragrances_cat_icon.png
+    - assets/images/skincare_cat_Icon.png
+    - assets/images/groceries_cat_icon.png
+    - assets/images/home_decoration_cat._icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

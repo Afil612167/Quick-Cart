@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' ;
+import 'package:introduction_screen/introduction_screen.dart';
+
+import 'package:e_store/constants/colors.dart';
+import 'package:e_store/view/intro_screen/widget/first_onboarding_screen.dart';
 import 'package:e_store/view/intro_screen/widget/second_onboarding_screen.dart';
 import 'package:e_store/view/intro_screen/widget/third_onboarding.dart';
 import 'package:e_store/view/welcome_screen/welcome_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:e_store/constants/colors.dart';
-import 'package:e_store/view/intro_screen/widget/first_onboarding_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({super.key});

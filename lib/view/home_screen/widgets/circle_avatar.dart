@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/asset_images.dart';
 import '../../../constants/colors.dart';
 
+// ignore: must_be_immutable
 class ProfileCircleAvatar extends StatelessWidget {
   double height;
   double width;
@@ -19,7 +20,7 @@ class ProfileCircleAvatar extends StatelessWidget {
       radius: height / 32,
       child: CircleAvatar(
         radius: height / 35,
-        backgroundImage: AssetImage(maleUserLogo),
+        backgroundImage: const AssetImage(maleUserLogo),
       ),
     );
   }

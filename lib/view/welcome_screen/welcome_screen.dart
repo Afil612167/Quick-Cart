@@ -21,11 +21,6 @@ class WelcomeScreenState extends State<WelcomeScreen> {
       body: Container(
         height: height,
         width: width,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(welcome),
-          ),
-        ),
         child: Column(
           children: [
             Padding(
@@ -48,8 +43,12 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
             ),
+            Image(
+              image: AssetImage(welcome),
+              height: height / 3,
+            ),
             Padding(
-              padding: EdgeInsets.only(top: height / 2),
+              padding: EdgeInsets.only(top: height / 10),
             ),
             StartShoppingButton(height: height, width: width)
           ],

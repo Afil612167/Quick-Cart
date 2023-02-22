@@ -21,10 +21,10 @@ class CatogoryViewAllText extends StatelessWidget {
           style: TextStyle(
               fontSize: height / 36, fontWeight: FontWeight.w500),
         ),
-        Expanded(
+        const Expanded(
           child: SizedBox(),
         ),
-                Icon(Icons.arrow_circle_right_outlined),
+                const Icon(Icons.arrow_circle_right_outlined),
         SizedBox(
           width: height / 60,
         ),

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:e_store/constants/asset_images.dart';
-import 'package:e_store/view/intro_screen/Intro_screen.dart';
+import 'package:e_store/view/intro_screen/intro_screen.dart';
 import 'package:e_store/view/splash_screen/widgets/gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

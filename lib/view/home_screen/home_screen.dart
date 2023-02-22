@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:e_store/constants/asset_images.dart';
+import 'package:e_store/constants/colors.dart';
 import 'package:e_store/functions/fetch_product_info.dart';
 import 'package:e_store/view/home_screen/widgets/SearchBar.dart';
+import 'package:e_store/view/home_screen/widgets/bottom_navigation_bar.dart';
 import 'package:e_store/view/home_screen/widgets/bell_icon.dart';
 import 'package:e_store/view/home_screen/widgets/circle_avatar.dart';
-import 'package:e_store/view/home_screen/widgets/discount_slider.dart';
 import 'package:e_store/view/home_screen/widgets/products_grid.dart';
-import 'package:flutter/material.dart';
-import 'package:e_store/constants/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,13 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    print(height);
     return SafeArea(
       child: Scaffold(
         backgroundColor: mainWhite,
         body: SingleChildScrollView(
           child: Column(
-            children: [
+            children: <Widget>[
               SizedBox(
                 height: height / 110,
               ),
@@ -53,8 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             future: fetchProductInfo(),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                print(snapshot.data!.products![0].brand
-                                    .toString());
                                 return Text(
                                   snapshot.data!.products![0].brand,
                                   style: TextStyle(
@@ -62,13 +61,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontSize: height / 40),
                                 );
                               } else {
-                                return CircularProgressIndicator();
+                                return const CircularProgressIndicator();
                               }
                             }),
                       ),
                     ],
                   ),
-                  Expanded(
+                  const Expanded(
                     child: SizedBox(),
                   ),
                   myAppBarIcon(),
@@ -83,23 +82,52 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: height / 110,
               ),
-              SizedBox(
-                height: height / 110,
+              Row(
+                children: [
+                  SizedBox(
+                    width: width / 40,
+                  ),
+                  const Text(
+                    'Catogories',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
-              DiscountSlider(width: width),
               SizedBox(
+                height: height / 15,
+                width: width,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 7,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      height: height / 15,
+                      width: height / 20,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return CircleAvatar(
+                      radius: height / 45,
+                      backgroundColor: secondaryWhite,
+                      child: CircleAvatar(
+                        radius: height / 50,
+                        child: Image(
+                          image: AssetImage(catogoryImageList[index]),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Container(
+                color: secondaryWhite,
                 height: height / 110,
               ),
               ProductGrid(height: height, width: width),
             ],
           ),
-        ),bottomNavigationBar:    BottomNavigationBar(items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.abc),label: ''
-                ),
-                BottomNavigationBarItem(icon: Icon(Icons.ac_unit),label: ''),
-                BottomNavigationBarItem(icon: Icon(Icons.r_mobiledata),label: '')
-              ]),
+        ),
+        bottomNavigationBar: const BottomNavigationBarHome(),
       ),
     );
   }

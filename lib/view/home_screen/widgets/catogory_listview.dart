@@ -61,7 +61,7 @@ class _CatogoryGridState extends State<CatogoryGrid> {
                         return Container(
                           width: widget.heights / 17,
                           height: widget.heights / 17,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: secondaryWhite,
                               shape: BoxShape.circle,
                               image: DecorationImage(
@@ -70,7 +70,7 @@ class _CatogoryGridState extends State<CatogoryGrid> {
                         );
                       }
                     }),
-                Padding(padding: EdgeInsets.only(top: 4)),
+                const Padding(padding: EdgeInsets.only(top: 4)),
               ],
             ),
           );

@@ -29,9 +29,10 @@ class _SuccessfullSignInScreenState extends State<SuccessfullSignInScreen> {
                 child: Text(
                   "Verification",
                   style: TextStyle(
-                      color: mainBlack,
-                      fontSize: height / 18,
-                      fontWeight: FontWeight.w500),
+                    color: mainBlack,
+                    fontSize: height / 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               Center(

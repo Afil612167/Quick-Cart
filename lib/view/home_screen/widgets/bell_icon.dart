@@ -12,7 +12,7 @@ Widget myAppBarIcon() {
     ),
     child: Stack(
       children: [
-        Icon(
+        const Icon(
           Icons.notifications_none_sharp,
           color: Colors.black,
           size: 30,
@@ -21,16 +21,16 @@ Widget myAppBarIcon() {
           width: 30,
           height: 30,
           alignment: Alignment.topRight,
-          margin: EdgeInsets.only(top: 5),
+          margin: const EdgeInsets.only(top: 5),
           child: Container(
             width: 15,
             height: 15,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color(0xffc32c37),
+                color: const Color(0xffc32c37),
                 border: Border.all(color: Colors.white, width: 1)),
-            child: Padding(
-              padding: const EdgeInsets.all(0.0),
+            child: const Padding(
+              padding: EdgeInsets.all(0.0),
               child: Center(
                 child: Text(
                   '3',

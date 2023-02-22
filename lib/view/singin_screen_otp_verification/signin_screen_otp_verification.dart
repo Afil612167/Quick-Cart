@@ -59,7 +59,7 @@ class SignInScreenOtpVarification extends StatelessWidget {
             Padding(padding: EdgeInsets.only(top: height / 25)),
             Center(
               child: Image(
-                image: AssetImage(welcome),
+                image: AssetImage(authenticationPng),
                 height: height / 3,
                 width: width / 2,
               ),

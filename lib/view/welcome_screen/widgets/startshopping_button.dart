@@ -1,10 +1,10 @@
 //************************** -Start shopping Button- ********************************//
-import 'package:e_store/view/signin_screen_otp/signin_screen_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:e_store/view/signin_screen_otp/signin_screen_otp.dart';
+
 import '../../../constants/colors.dart';
-import '../../home_screen/home_screen.dart';
 
 class StartShoppingButton extends StatelessWidget {
   const StartShoppingButton({
