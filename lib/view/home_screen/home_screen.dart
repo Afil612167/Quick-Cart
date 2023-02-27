@@ -1,13 +1,15 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:e_store/constants/asset_images.dart';
 import 'package:e_store/constants/colors.dart';
 import 'package:e_store/functions/fetch_product_info.dart';
-import 'package:e_store/view/home_screen/widgets/SearchBar.dart';
-import 'package:e_store/view/home_screen/widgets/bottom_navigation_bar.dart';
+import 'package:e_store/view/home_screen/widgets/search_bar.dart';
+import 'package:e_store/view/common_widget/bottom_navigation_bar.dart';
 import 'package:e_store/view/home_screen/widgets/bell_icon.dart';
 import 'package:e_store/view/home_screen/widgets/circle_avatar.dart';
 import 'package:e_store/view/home_screen/widgets/products_grid.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,8 +21,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    
+    print("Height is ${height * 0.02741}");
     return SafeArea(
       child: Scaffold(
         backgroundColor: mainWhite,
@@ -52,16 +57,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       SingleChildScrollView(
                         child: FutureBuilder(
                             future: fetchProductInfo(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
+                            builder: (context, products) {
+                            
+                              if (products.hasData) {
                                 return Text(
-                                  snapshot.data!.products![0].brand,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: height / 40),
-                                );
-                              } else {
-                                return const CircularProgressIndicator();
+                                products.data!.products![0].title,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: height / 40),
+                              );
+                              }else{
+                                return Text(
+                                'Loading Data',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: height / 40),
+                              );
                               }
                             }),
                       ),

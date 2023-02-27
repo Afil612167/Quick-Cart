@@ -1,7 +1,7 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/colors.dart';
+import '../../constants/colors.dart';
 
 int currentIndex = 0;
 
@@ -19,6 +19,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
     return BubbleBottomBar(
       hasNotch: true,
       backgroundColor: mainPink,
+      
       // fabLocation: BubbleBottomBarFabLocation.end,
       opacity: .2,
       currentIndex: currentIndex,

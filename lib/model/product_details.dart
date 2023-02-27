@@ -10,29 +10,17 @@ String productInfoToJson(ProductInfo data) => json.encode(data.toJson());
 
 class ProductInfo {
     ProductInfo({
-         this.products,
-         this.total,
-         this.skip,
-         this.limit,
+        required this.products,
     });
 
-    List<Product>? products;
-    int? total;
-    int? skip;
-    int? limit;
+    List<Product> products;
 
     factory ProductInfo.fromJson(Map<String, dynamic> json) => ProductInfo(
         products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
-        total: json["total"],
-        skip: json["skip"],
-        limit: json["limit"],
     );
 
     Map<String, dynamic> toJson() => {
-        "products": List<dynamic>.from(products!.map((x) => x.toJson())),
-        "total": total,
-        "skip": skip,
-        "limit": limit,
+        "products": List<dynamic>.from(products.map((x) => x.toJson())),
     };
 }
 

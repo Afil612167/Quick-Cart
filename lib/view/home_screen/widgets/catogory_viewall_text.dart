@@ -19,7 +19,7 @@ class CatogoryViewAllText extends StatelessWidget {
         Text(
           'Catogory',
           style: TextStyle(
-              fontSize: height / 36, fontWeight: FontWeight.w500),
+              fontSize: height*0.02741, fontWeight: FontWeight.w500),
         ),
         const Expanded(
           child: SizedBox(),
@@ -32,3 +32,4 @@ class CatogoryViewAllText extends StatelessWidget {
     );
   }
 }
+//2.741

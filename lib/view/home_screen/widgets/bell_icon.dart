@@ -2,20 +2,17 @@ import 'package:e_store/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 Widget myAppBarIcon() {
-  return Container(
-    width: 30,
-    height: 30,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: secondaryWhite,
-    boxShadow: [BoxShadow(offset: Offset.fromDirection(1))]
-    ),
+  return SizedBox(
+    width: 40,
+    height: 40,
     child: Stack(
       children: [
-        const Icon(
-          Icons.notifications_none_sharp,
-          color: Colors.black,
-          size: 30,
+        Center(
+          child: const Icon(
+            Icons.shopping_cart,
+            color: Colors.black,
+            size: 30,
+          ),
         ),
         Container(
           width: 30,
