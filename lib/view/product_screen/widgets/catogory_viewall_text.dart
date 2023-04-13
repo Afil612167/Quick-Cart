@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CatogoryViewAllText extends StatelessWidget {
@@ -18,13 +17,16 @@ class CatogoryViewAllText extends StatelessWidget {
         ),
         Text(
           'Catogory',
-          style: TextStyle(
-              fontSize: height*0.02741, fontWeight: FontWeight.w500),
+          style: Theme.of(context).textTheme.headline6,
         ),
-        const Expanded(
-          child: SizedBox(),
+        Expanded(child: SizedBox()),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            "view all",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-                const Icon(Icons.arrow_circle_right_outlined),
         SizedBox(
           width: height / 60,
         ),

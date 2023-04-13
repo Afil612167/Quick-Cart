@@ -1,8 +1,10 @@
+import 'package:e_store/controller/bottom_navigation_controller.dart';
+import 'package:e_store/controller/product_controller.dart';
 import 'package:e_store/view/home_screen/home_screen.dart';
-import 'package:e_store/view/profile_page.dart/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   try {
@@ -12,8 +14,19 @@ void main() async {
     print(e.toString());
   }
   runApp(
-    const GetMaterialApp(
-      home: HomeScreen(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProductController>(
+          create: (context) => ProductController(),
+        ),
+        ChangeNotifierProvider<BottomNavigationController>(
+          create: (context) => BottomNavigationController(),
+        ),
+      ],
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     ),
   );
 }
