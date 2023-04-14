@@ -9,6 +9,9 @@ const String facebookLogo = 'assets/images/facebook icon.png';
 const String maleUserLogo = 'assets/images/male user.png';
 const String authenticationPng = 'assets/images/Authentication.png';
 const String fadeImage = 'assets/images/fade_image.png';
+const String favouriteEmpty = 'assets/images/emptyfavourite.png';
+const String shoppingbag = 'assets/images/shoppingbag.png';
+const String backIcon = 'assets/images/back_icon.png';
 // const String backIcon = 'assets/images/back_icon.png';
 
 //asset lottie

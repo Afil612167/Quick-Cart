@@ -16,6 +16,7 @@ class _SecondOnBoardingScreenState extends State<SecondOnBoardingScreen> {
     // final width = MediaQuery.of(context).size.width;
 
     return Column(
+      //how 
       children: [
         Padding(
           padding: EdgeInsets.only(

@@ -1,4 +1,3 @@
-
 import '../model/cat_model.dart';
 
 const List catogoryImageList = [
@@ -9,7 +8,7 @@ const List catogoryImageList = [
   "assets/images/groceries_cat_icon.png",
   "assets/images/home_decoration_cat._icon.png",
 ];
-List<CatModel> catergoryList = [
+List<CatModel> categoryList = [
   CatModel(
     category: "smartphones",
     image: "assets/images/mobile_cat_icon.png",

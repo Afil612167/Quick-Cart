@@ -1,4 +1,6 @@
+import 'package:e_store/view/catogory_screen/catogory_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CatogoryViewAllText extends StatelessWidget {
   const CatogoryViewAllText({
@@ -19,10 +21,12 @@ class CatogoryViewAllText extends StatelessWidget {
           'Catogory',
           style: Theme.of(context).textTheme.headline6,
         ),
-        Expanded(child: SizedBox()),
+        const Expanded(child: SizedBox()),
         TextButton(
-          onPressed: () {},
-          child: Text(
+          onPressed: () {
+            Get.to(const CategoryScreen());
+          },
+          child: const Text(
             "view all",
             style: TextStyle(color: Colors.black),
           ),
@@ -34,4 +38,3 @@ class CatogoryViewAllText extends StatelessWidget {
     );
   }
 }
-//2.741

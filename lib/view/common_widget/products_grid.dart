@@ -1,19 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
 
-import 'package:e_store/constants/asset_images.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import 'package:e_store/constants/colors.dart';
 import 'package:e_store/controller/product_controller.dart';
+import 'package:e_store/model/product_model.dart';
+
+import 'rating_fild.dart';
 
 class ProductGrid extends StatelessWidget {
   double height;
   double width;
   ProductController provider;
+  List<Product> currentProduct;
+  List discountPrizeCurrentProduct;
+
   ProductGrid({
     Key? key,
     required this.height,
     required this.width,
     required this.provider,
+    required this.currentProduct,
+    required this.discountPrizeCurrentProduct,
   }) : super(key: key);
 
   @override
@@ -23,13 +33,13 @@ class ProductGrid extends StatelessWidget {
         width: width * 0.92,
         child: GridView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: provider.currentProduct.length,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: currentProduct.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.8,
-              crossAxisSpacing: width * 0.04,
-              mainAxisSpacing: height / 100),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10),
           itemBuilder: (context, index) {
             return GridTile(
               child: Container(
@@ -42,41 +52,46 @@ class ProductGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                          image: NetworkImage(
-                              provider.currentProduct[index].thumbnail),
+                          image: NetworkImage(currentProduct[index].thumbnail),
                         ),
                       ),
                     ),
-                    Expanded(child: SizedBox()),
-                    Text(
-                      provider.currentProduct[index].title,
-                      style: TextStyle(
-                          fontSize: height < 600 ? height / 45 : height / 50,
-                          fontWeight: FontWeight.w500),
-                      overflow: TextOverflow.ellipsis,
+                    const Spacer(
+                      flex: 2,
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            currentProduct[index].title,
+                            style: const TextStyle(fontWeight: FontWeight.w400),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        RatingIndicator(
+                          rating: currentProduct[index].rating,
+                        ),
+                      ],
                     ),
                     Row(
                       children: [
                         Text.rich(
                           TextSpan(
                             text:
-                                '\$ ${provider.discountPrizeCurrentProduct[index]} ',
-                            style: TextStyle(
-                                fontSize: height < 600
-                                    ? width < 500
-                                        ? height / 42
-                                        : width / 42
-                                    : height / 45,
-                                color: mainPink,
-                                fontWeight: FontWeight.w500),
+                                '\$ ${ discountPrizeCurrentProduct[index]} ',
+                            style: const TextStyle(
+                                color: mainPink, fontWeight: FontWeight.w500),
                             children: [
                               TextSpan(
                                 text:
                                     //for discount prize calculating
-                                    " \$ ${provider.currentProduct[index].price.toInt()}",
+                                    " \$ ${currentProduct[index].price.toInt()}",
                                 style: TextStyle(
-                                    decoration:
-                                        TextDecoration.lineThrough,
+                                    decoration: TextDecoration.lineThrough,
                                     fontSize: height < 600
                                         ? width < 500
                                             ? height / 52
@@ -88,12 +103,12 @@ class ProductGrid extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Expanded(child: SizedBox()),
+                        const Expanded(child: SizedBox()),
                         Card(
                           color: secondaryPink,
                           child: Text(
-                            " ${provider.currentProduct[index].discountPercentage.toInt()}%",
-                            style: TextStyle(color: mainPink),
+                            " ${currentProduct[index].discountPercentage.toInt()}%",
+                            style: const TextStyle(color: mainPink),
                           ),
                         ),
                         SizedBox(
@@ -101,13 +116,9 @@ class ProductGrid extends StatelessWidget {
                         )
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text("Rating"),
-                        Padding(padding: EdgeInsets.only(left: width / 30)),
-                        Text("rating"),
-                      ],
-                    ),
+                    const Spacer(
+                      flex: 1,
+                    )
                   ],
                 ),
               ),

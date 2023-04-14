@@ -17,9 +17,9 @@ class ProfileCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: mainBlack,
-      radius: height / 32,
+      radius: 19,
       child: CircleAvatar(
-        radius: height / 35,
+        radius: 20,
         backgroundImage: const AssetImage(maleUserLogo),
       ),
     );

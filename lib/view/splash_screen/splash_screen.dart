@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:e_store/constants/asset_images.dart';
+import 'package:e_store/view/home_screen/home_screen.dart';
 import 'package:e_store/view/intro_screen/intro_screen.dart';
 import 'package:e_store/view/splash_screen/widgets/gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/colors.dart';
 
@@ -20,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 5),
+      Duration(seconds: 2),
       () => whereToGo(),
     );
   }
@@ -66,6 +68,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-whereToGo() {
-  Get.offAll(OnBoardingScreen());
+whereToGo() async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  bool? logincheck = preferences.getBool("SignInKey");
+  print(logincheck);
+  if (logincheck != null) {
+    if (logincheck == true) {
+      Get.offAll(HomeScreen());
+    }
+  } else {
+    Get.offAll(OnBoardingScreen());
+  }
 }

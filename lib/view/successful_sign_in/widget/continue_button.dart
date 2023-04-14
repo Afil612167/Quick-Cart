@@ -1,6 +1,7 @@
-import 'package:e_store/view/successful_sign_in/successful_signin_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/colors.dart';
 import '../../home_screen/home_screen.dart';
@@ -24,7 +25,11 @@ class _ContinueButtonState extends State<ContinueButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(HomeScreen()),
+      onTap: () async {
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          preferences.setBool("SignInKey", true);
+        Get.offAll(HomeScreen());
+      },
       child: SizedBox(
         height: widget.height / 16,
         width: widget.width / 1.5,

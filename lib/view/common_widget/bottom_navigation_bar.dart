@@ -19,6 +19,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
     return Consumer<BottomNavigationController>(
         builder: (context, provider, _) {
       return BubbleBottomBar(
+        iconSize: 20,
         hasNotch: true,
         backgroundColor: mainPink,
         opacity: .2,
@@ -29,10 +30,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(16),
         ), //border radius doesn't work when the notch is enabled.
-        elevation: 8,
-        tilesPadding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-        ),
+        elevation: 5,
         items: const <BubbleBottomBarItem>[
 //***************************** - Home Icon - ************************************ *//
 

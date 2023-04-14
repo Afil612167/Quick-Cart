@@ -1,7 +1,12 @@
 import 'package:e_store/controller/bottom_navigation_controller.dart';
 import 'package:e_store/controller/product_controller.dart';
+import 'package:e_store/view/catogory_screen/catogory_screen.dart';
 import 'package:e_store/view/common_widget/custom_button.dart';
+import 'package:e_store/view/home_screen/appbar.dart';
 import 'package:e_store/view/listing_screens/listing_screens.dart';
+import 'package:e_store/view/product_screen/widgets/product_appbar.dart';
+import 'package:e_store/view/common_widget/products_grid.dart';
+import 'package:e_store/view/product_screen/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:e_store/constants/colors.dart';
@@ -39,32 +44,54 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, navigationProvider, _) {
         return SafeArea(
           child: Scaffold(
+            appBar: navigationProvider.currentIndex == 1
+                ? homeScreenappbar(navigationProvider, context, "Favourite")
+                : navigationProvider.currentIndex == 2
+                    ? homeScreenappbar(
+                        navigationProvider, context, "Flash sale")
+                    : null,
             backgroundColor: secondaryWhite,
-            appBar: navigationProvider.currentIndex != 0
-                ? AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    leading: Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: FittedBox(child: CustomButton(ontap: () {
-                        navigationProvider.indexUpdate(value: 0);
-                      })),
+            body: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  if (navigationProvider.currentIndex == 0)
+                    SliverAppBar(
+                      backgroundColor: mainPink,
+                      title: ProductAppbar(height: height, width: width),
+                      pinned: true,
+                      floating: true,
+                      elevation: 0,
+                      forceElevated: innerBoxIsScrolled,
+                      bottom: AppBar(
+                        backgroundColor: mainPink,
+                        title: SearchBar(height: height, width: width),
+                      ),
                     ),
-                    title: Text(
-                      "Favourite",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    centerTitle: true,
-                  )
+                ];
+              },
+              body: navigationProvider.currentIndex == 1
+                  ? ListingBody(
+                      provider: provider,
+                      bottomNavigationController: navigationProvider,
+                    )
+                  : navigationProvider.currentIndex == 2
+                      ? ProductGrid(
+                          currentProduct: provider.flashDeals,
+                          height: height,
+                          width: width,
+                          provider: provider, discountPrizeCurrentProduct: provider.discountPrizeFlashDeals,)
+                      : navigationProvider.currentIndex == 4
+                          ? CategoryScreen()
+                          :  ProductsScreen(
+                              height: height,
+                              width: width,
+                              provider: provider,
+                            ),
+            ),
+            bottomNavigationBar: navigationProvider.currentIndex != 1
+                ? BottomNavigationBarHome()
                 : null,
-            body: navigationProvider.currentIndex == 1
-                ? ListingBody(provider: provider,)
-                : ProductsScreen(
-                    height: height,
-                    width: width,
-                    provider: provider,
-                  ),
-            bottomNavigationBar: const BottomNavigationBarHome(),
           ),
         );
       });

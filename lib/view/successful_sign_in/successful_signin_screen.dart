@@ -19,39 +19,34 @@ class _SuccessfullSignInScreenState extends State<SuccessfullSignInScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Padding(padding: EdgeInsets.only(top: height / 5)),
-              Center(
-                child: Text(
-                  "Verification",
-                  style: TextStyle(
-                    color: mainBlack,
-                    fontSize: height / 18,
-                    fontWeight: FontWeight.w500,
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                Padding(padding: EdgeInsets.only(top: height / 5)),
+                Center(
+                  child: Text(
+                    "Verification",
+                    style:Theme.of(context).textTheme.headline3,
                   ),
                 ),
-              ),
-              Center(
-                child: Text(
-                  "Successful",
-                  style: TextStyle(
-                      color: mainBlack,
-                      fontSize: height / 25,
-                      fontWeight: FontWeight.w500),
+                Center(
+                  child: Text(
+                    "Successful",
+                    style:Theme.of(context).textTheme.headline4 ,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: height / 2.5,
-                child: Lottie.asset(lottie),
-              ),
-              ContinueButton(height: height, width: width)
-            ],
-          ),
-        ],
+                SizedBox(
+                  height: height / 2.5,
+                  child: Lottie.asset(lottie),
+                ),
+                ContinueButton(height: height, width: width)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

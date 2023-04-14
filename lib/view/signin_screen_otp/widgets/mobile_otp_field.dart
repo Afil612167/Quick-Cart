@@ -1,15 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
+import 'package:e_store/controller/signin_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import 'package:e_store/main.dart';
-import 'package:e_store/view/intro_screen/widget/third_onboarding.dart';
-import 'package:e_store/view/signin_screen_otp/signin_screen_otp.dart';
+import 'package:provider/provider.dart';
 
-import '../../../constants/colors.dart';
 
 // class MobileOtpField extends StatelessWidget {
 //   MobileOtpField({
@@ -70,7 +65,8 @@ import '../../../constants/colors.dart';
 class MobileOtpField extends StatelessWidget {
   double height;
   double width;
-   MobileOtpField({
+
+  MobileOtpField({
     Key? key,
     required this.height,
     required this.width,
@@ -78,24 +74,26 @@ class MobileOtpField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height / 13,
-      width: width * 0.9,
-      child: IntlPhoneField(
-        decoration: InputDecoration(
-          labelText: 'Phone Number',
-          border: OutlineInputBorder(
-            borderSide: BorderSide(),
+    return Consumer<SignInController>(builder: (context, signinProvider, _) {
+      return SizedBox(
+        height: height / 13,
+        width: width * 0.9,
+        child: IntlPhoneField(
+          decoration: const InputDecoration(
+            labelText: 'Phone Number',
+            border: OutlineInputBorder(
+              borderSide: BorderSide(),
+            ),
           ),
+          initialCountryCode: 'IN',
+          onChanged: (phone) {
+            signinProvider.phoneNumberUpdate(phoneNum: phone.completeNumber);
+          },
+          onCountryChanged: (country) {
+            print(country);
+          },
         ),
-        initialCountryCode: 'IN',
-        onChanged: (phone) {
-          print(phone.completeNumber);
-        },
-        onCountryChanged: (country) {
-          print(country);
-        },
-      ),
-    );
+      );
+    });
   }
 }

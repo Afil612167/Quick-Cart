@@ -45,6 +45,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             ),
             Image(
               image: AssetImage(welcome),
+              fit: BoxFit.contain,
               height: height / 3,
             ),
             Padding(
