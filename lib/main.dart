@@ -3,6 +3,8 @@
 import 'package:e_store/controller/bottom_navigation_controller.dart';
 import 'package:e_store/controller/product_controller.dart';
 import 'package:e_store/controller/signin_controller.dart';
+import 'package:e_store/view/account_screen/subscreens/edit_profile_screen/controller/edit_profile_controller.dart';
+import 'package:e_store/view/account_screen/subscreens/edit_profile_screen/edit_profile.dart';
 import 'package:e_store/view/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,9 @@ void main() async {
         ),
         ChangeNotifierProvider<SignInController>(
           create: (context) => SignInController(),
+        ),
+        ChangeNotifierProvider<EditProfileScreenController>(
+          create: (context) => EditProfileScreenController(),
         ),
       ],
       child:const GetMaterialApp(

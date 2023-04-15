@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,9 +24,7 @@ class _ContinueButtonState extends State<ContinueButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
-          SharedPreferences preferences = await SharedPreferences.getInstance();
-          preferences.setBool("SignInKey", true);
+      onTap: () {
         Get.offAll(HomeScreen());
       },
       child: SizedBox(

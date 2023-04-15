@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import '../../controller/bottom_navigation_controller.dart';
 import '../common_widget/custom_button.dart';
 
-AppBar homeScreenappbar(BottomNavigationController navigationProvider,
-    BuildContext context, String text) {
+AppBar homeScreenappbar(
+  BottomNavigationController navigationProvider,
+  BuildContext context,
+  String text,
+  Color color
+) {
   return AppBar(
     elevation: 0,
-    backgroundColor: Colors.transparent,
+    backgroundColor: color,
     leading: Padding(
       padding: EdgeInsets.only(left: 10),
       child: FittedBox(child: CustomButton(ontap: () {
@@ -18,6 +22,6 @@ AppBar homeScreenappbar(BottomNavigationController navigationProvider,
       text,
       style: Theme.of(context).textTheme.headline6,
     ),
-    centerTitle: true,
+    centerTitle: navigationProvider.currentIndex == 3 ? false : true,
   );
 }

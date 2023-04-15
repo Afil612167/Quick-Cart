@@ -18,7 +18,7 @@ class FlashDeal extends StatelessWidget {
     return Consumer<BottomNavigationController>(
         builder: (context, bottomNavigationController, _) {
       return Card(
-        elevation: 5,
+        elevation: 2,
         color: Colors.transparent,
         child: Container(
           height: 130,

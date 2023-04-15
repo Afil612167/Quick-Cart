@@ -35,7 +35,7 @@ class ProductGrid extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: currentProduct.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.8,
               crossAxisSpacing: 10,
@@ -43,24 +43,20 @@ class ProductGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             return GridTile(
               child: Container(
-                decoration: BoxDecoration(
-                    color: mainWhite, borderRadius: BorderRadius.circular(15)),
+                color: mainWhite,
                 child: Column(
                   children: [
-                    Container(
-                      height: height * 0.16,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: NetworkImage(currentProduct[index].thumbnail),
-                        ),
-                      ),
-                    ),
+                    AspectRatio(
+                        aspectRatio: 1.2,
+                        child: SizedBox(
+                            child: Image.network(
+                                currentProduct[index].thumbnail))),
                     const Spacer(
                       flex: 2,
                     ),
                     Row(
                       children: [
+                        const Padding(padding: EdgeInsets.only(left: 10)),
                         Flexible(
                           child: Text(
                             currentProduct[index].title,
@@ -72,6 +68,7 @@ class ProductGrid extends StatelessWidget {
                     ),
                     Row(
                       children: [
+                        const Padding(padding: EdgeInsets.only(left: 10)),
                         RatingIndicator(
                           rating: currentProduct[index].rating,
                         ),
@@ -79,10 +76,10 @@ class ProductGrid extends StatelessWidget {
                     ),
                     Row(
                       children: [
+                        const Padding(padding: EdgeInsets.only(left: 10)),
                         Text.rich(
                           TextSpan(
-                            text:
-                                '\$ ${ discountPrizeCurrentProduct[index]} ',
+                            text: '\$ ${discountPrizeCurrentProduct[index]} ',
                             style: const TextStyle(
                                 color: mainPink, fontWeight: FontWeight.w500),
                             children: [

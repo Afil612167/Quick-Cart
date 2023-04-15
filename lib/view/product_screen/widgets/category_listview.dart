@@ -18,16 +18,17 @@ class CategoryListview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height / 15,
       width: width,
+      height: 70,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
         itemCount: categoryList.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(
-              left: height / 20,
+              left:20,
             ),
             child: Column(
               children: [
@@ -36,7 +37,6 @@ class CategoryListview extends StatelessWidget {
                 ),
                 CatogoryItem(
                   provider: provider,
-                  height: height,
                   index: index,
                 ),
                 const Spacer(

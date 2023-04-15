@@ -91,6 +91,20 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
             ),
             title: Text("Profile"),
           ),
+
+//**********************************- Cart -************************************* */
+          BubbleBottomBarItem(
+            backgroundColor: mainWhite,
+            icon: Icon(
+              Icons.shopping_cart_checkout_outlined,
+              color: mainWhite,
+            ),
+            activeIcon: Icon(
+              Icons.shopping_cart_checkout_outlined,
+              color: mainWhite,
+            ),
+            title: Text("Cart"),
+          ),
         ],
       );
     });

@@ -9,12 +9,10 @@ class CatogoryItem extends StatelessWidget {
     Key? key,
     required this.provider,
     required this.index,
-    required this.height,
   }) : super(key: key);
 
   final ProductController provider;
   final int index;
-  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +21,11 @@ class CatogoryItem extends StatelessWidget {
         provider.categoryChange(cat: categoryList[index].category);
       },
       child: CircleAvatar(
-        radius: height / 45,
+        radius: 18,
         backgroundColor: secondaryWhite,
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
-          radius: height / 50,
+          radius: 16,
           child: Image(
             image: AssetImage(categoryList[index].image),
           ),

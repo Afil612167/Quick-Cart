@@ -44,7 +44,7 @@ class CategoryScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 10,
-                  right: 10,
+                  right: 10,top: 5
                 ),
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -68,8 +68,7 @@ class CategoryScreen extends StatelessWidget {
                             const Spacer(flex: 3),
                             CatogoryItem(
                                 provider: provider,
-                                index: index,
-                                height: height + 100),
+                                index: index,),
                             const Spacer(
                               flex: 1,
                             ),

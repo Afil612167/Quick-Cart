@@ -3,6 +3,8 @@ import 'package:e_store/constants/asset_images.dart';
 import 'package:e_store/view/home_screen/home_screen.dart';
 import 'package:e_store/view/intro_screen/intro_screen.dart';
 import 'package:e_store/view/splash_screen/widgets/gradient.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -69,14 +71,10 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 whereToGo() async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  bool? logincheck = preferences.getBool("SignInKey");
-  print(logincheck);
-  if (logincheck != null) {
-    if (logincheck == true) {
-      Get.offAll(HomeScreen());
-    }
-  } else {
+  String? user = FirebaseAuth.instance.currentUser!.phoneNumber;
+  print(user);
+  if (user != null)
+    Get.offAll(HomeScreen());
+  else
     Get.offAll(OnBoardingScreen());
-  }
 }
