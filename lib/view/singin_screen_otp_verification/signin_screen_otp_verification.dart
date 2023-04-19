@@ -1,9 +1,11 @@
 import 'package:e_store/constants/colors.dart';
 import 'package:e_store/controller/signin_controller.dart';
+import 'package:e_store/view/signin_screen_otp/signin_screen_otp.dart';
 import 'package:e_store/view/singin_screen_otp_verification/widgets/verify_phone_number.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +51,7 @@ class SignInScreenOtpVarification extends StatelessWidget {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             leading: InkWell(
-                onTap: () => Get.back(),
+                onTap: () => Get.off(SignInScreenOtp()),
                 child: Icon(
                   Icons.arrow_back_ios_new_sharp,
                   color: mainBlack,
@@ -98,7 +100,7 @@ class SignInScreenOtpVarification extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {
-                    Get.back();
+                    Get.off(SignInScreenOtp());
                   },
                   child: const Text(
                     "Edit Phone number?",

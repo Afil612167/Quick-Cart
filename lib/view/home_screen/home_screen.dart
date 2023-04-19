@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_store/controller/bottom_navigation_controller.dart';
 import 'package:e_store/controller/product_controller.dart';
 import 'package:e_store/view/account_screen/account_screen.dart';
@@ -8,6 +9,7 @@ import 'package:e_store/view/listing_screens/listing_screens.dart';
 import 'package:e_store/view/product_screen/widgets/product_appbar.dart';
 import 'package:e_store/view/common_widget/products_grid.dart';
 import 'package:e_store/view/product_screen/widgets/search_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:e_store/constants/colors.dart';
@@ -62,7 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (navigationProvider.currentIndex == 0)
                     SliverAppBar(
                       backgroundColor: mainPink,
-                      title: ProductAppbar(height: height, width: width),
+                      title: ProductAppbar(
+                          height: height, width: width, provider: provider),
                       pinned: true,
                       floating: true,
                       elevation: 0,

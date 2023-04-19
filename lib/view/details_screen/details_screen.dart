@@ -1,56 +1,93 @@
-import 'package:e_store/constants/asset_images.dart';
-import 'package:e_store/prouducts/product_list.dart';
-import 'package:e_store/view/common_widget/bottom_navigation_bar.dart';
+// import 'package:carousel_pro/carousel_pro.dart';
+
+import 'package:e_store/controller/product_controller.dart';
+import 'package:e_store/view/details_screen/widgets/description_area.dart';
+import 'package:e_store/view/details_screen/widgets/main_details_area.dart';
+import 'package:e_store/view/details_screen/widgets/pay_later.dart';
+import 'package:e_store/view/details_screen/widgets/product_image_slider.dart';
+import 'package:e_store/view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/colors.dart';
-import '../home_screen/home_screen.dart';
 
-class DetailsScreen extends StatefulWidget {
+class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
-}
-
-class _DetailsScreenState extends State<DetailsScreen> {
-  @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        Container(
-          height: height * 0.35,
-          width: width,
-          decoration: BoxDecoration(
-              color: mainGrey,
-              image: DecorationImage(
-                  image: AssetImage(fadeImage),
-                  fit: BoxFit.scaleDown,
-                  scale: 10)),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundColor: mainPink,
+    final height = MediaQuery.of(context).size.height;
+    return Consumer<ProductController>(builder: (context, provider, _) {
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: secondaryWhite,
+          appBar: AppBar(
+            backgroundColor: mainPink,
+            leading: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                   onPressed: () {
-                    Get.offAll(HomeScreen());
+                    Get.offAll(const HomeScreen());
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
-                    color: mainWhite,
-                    size: 24,
+                  ),
+                )),
+            title: Text(provider.currentProduct[0].title),
+          ),
+          body: Column(
+            children: [
+              SizedBox(
+                height: height - 136,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ProductImageSlider(
+                        width: width,
+                        provider: provider,
+                      ),
+                      MainDetailsArea(
+                        width: width,
+                        provider: provider,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const PayLater(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      DescriptionArea(
+                        width: width,
+                        provider: provider,
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
+              Row(
+                children: [
+                  Container(
+                      color: mainWhite,
+                      width: width / 2,
+                      height: 42,
+                      child: const Center(child: Text("Add To Cart"))),
+                  Container(
+                    color: Colors.amber[400],
+                    width: width / 2,
+                    height: 42,
+                    child: const Center(
+                      child: Text("Buy now"),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-      ],
-    );
+      );
+    });
   }
 }

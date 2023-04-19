@@ -88,7 +88,7 @@ class FeatureStoreItem extends StatelessWidget {
             children: [
               const Padding(padding: EdgeInsets.only(left: 10)),
               RatingIndicator(
-                rating: currentProduct[index].rating,
+                rating: currentProduct[index].rating, itemSize: 12,
               ),
             ],
           ),

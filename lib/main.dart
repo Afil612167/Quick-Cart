@@ -5,6 +5,7 @@ import 'package:e_store/controller/product_controller.dart';
 import 'package:e_store/controller/signin_controller.dart';
 import 'package:e_store/view/account_screen/subscreens/edit_profile_screen/controller/edit_profile_controller.dart';
 import 'package:e_store/view/account_screen/subscreens/edit_profile_screen/edit_profile.dart';
+import 'package:e_store/view/listing_screens/controller/wish_list_controller.dart';
 import 'package:e_store/view/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +34,15 @@ void main() async {
         ChangeNotifierProvider<EditProfileScreenController>(
           create: (context) => EditProfileScreenController(),
         ),
+        ChangeNotifierProvider<WishListController>(
+          create: (context) => WishListController(),
+        ),
       ],
-      child:const GetMaterialApp(
+      child: const GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),
     ),
   );
 }
+

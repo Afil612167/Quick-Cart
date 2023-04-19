@@ -1,11 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_store/controller/product_controller.dart';
+import 'package:e_store/servieces/firebse_current_user.dart';
+import 'package:e_store/view/details_screen/details_screen.dart';
 import 'package:e_store/view/product_screen/widgets/bell_icon.dart';
 import 'package:e_store/view/product_screen/widgets/circle_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductAppbar extends StatelessWidget {
   final double height;
   final double width;
-  const ProductAppbar({super.key, required this.height, required this.width});
+  final ProductController provider;
+  const ProductAppbar(
+      {super.key,
+      required this.height,
+      required this.width,
+      required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +31,36 @@ class ProductAppbar extends StatelessWidget {
         SizedBox(
           width: height / 110,
         ),
-        Column(
-          children: [
-            Text(
-              'Welcome',
-              style: Theme.of(context).textTheme.subtitle2,
-            ),
-            Text(
-              'Muhammed Afil',
-              style: Theme.of(context).textTheme.headline5,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
+        StreamBuilder(
+            stream: firestoreCollections,
+            builder: (context, snapshot) {
+              return Column(
+                children: [
+                  Text(
+                    'Welcome',
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ),
+                  snapshot.hasData
+                      ? Text(
+                          "${snapshot.data!['firstName']} ${snapshot.data!['secondName']}",
+                          style: Theme.of(context).textTheme.headline5,
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      : Text(
+                          "Loading",
+                          style: Theme.of(context).textTheme.headline5,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                ],
+              );
+            }),
         const Expanded(
           child: SizedBox(),
         ),
         noticationIcons(
-          ontap: () {},
+          ontap: () {
+            Get.to(DetailsScreen());
+          },
           icon: const Icon(
             Icons.shopping_cart,
             color: Colors.black,

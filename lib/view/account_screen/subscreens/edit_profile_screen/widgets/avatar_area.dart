@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:e_store/servieces/firebse_current_user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,56 +17,68 @@ class AvatarArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<EditProfileScreenController>(
         builder: (context, genderProvider, _) {
-      List imageList = [
-        genderProvider.gender ? maleUserLogo : femaleUserLogo,
-        maleUserLogo,
-        femaleUserLogo
-      ];
-      return Container(
-        height: 140,
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(color: mainPink, boxShadow: [
-          BoxShadow(color: Colors.black26, offset: Offset(0.5, 2))
-        ]),
-        child: genderProvider.isClick
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      genderProvider.genderUpate(gender1: true);
-                      genderProvider.colorUpate(colorClick: true);
-                    },
-                    child: UserAvatar(
-                      image: imageList[1],
-                      color: genderProvider.clickColor1 ? mainPink : mainGrey,
-                      genderProvider: genderProvider,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      genderProvider.genderUpate(gender1: false);
-                      genderProvider.colorUpate2(colorClick: true);
-                    },
-                    child: UserAvatar(
-                      image: imageList[2],
-                      color: genderProvider.clickColor2 ? mainPink : mainGrey,
-                      genderProvider: genderProvider,
-                    ),
-                  ),
-                ],
-              )
-            : Center(
-                child: InkWell(
-                    onTap: () {
-                      genderProvider.isClickUpdate(click: true);
-                    },
-                    child: UserAvatar(
-                      genderProvider: genderProvider,
-                      image: imageList[0],
-                      color: mainGrey,
-                    ))),
-      );
+      return StreamBuilder(
+          stream: firestoreCollections,
+          builder: (context, snapshot) {
+            List imageList = [
+              snapshot.data!.exists
+                  ? snapshot.data!['gender']==true
+                      ? maleUserLogo
+                      : femaleUserLogo
+                  : maleUserLogo,
+              maleUserLogo,
+              femaleUserLogo
+            ];
+            return Container(
+              height: 140,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(color: mainPink, boxShadow: [
+                BoxShadow(color: Colors.black26, offset: Offset(0.5, 2))
+              ]),
+              child: genderProvider.isClick
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            genderProvider.genderUpate(gender1: true);
+                            genderProvider.colorUpate(colorClick: true);
+                          },
+                          child: UserAvatar(
+                            image: imageList[1],
+                            color: genderProvider.clickColor1
+                                ? mainPink
+                                : mainGrey,
+                            genderProvider: genderProvider,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            genderProvider.genderUpate(gender1: false);
+                            genderProvider.colorUpate2(colorClick: true);
+                          },
+                          child: UserAvatar(
+                            image: imageList[2],
+                            color: genderProvider.clickColor2
+                                ? mainPink
+                                : mainGrey,
+                            genderProvider: genderProvider,
+                          ),
+                        ),
+                      ],
+                    )
+                  : Center(
+                      child: InkWell(
+                          onTap: () {
+                            genderProvider.isClickUpdate(click: true);
+                          },
+                          child: UserAvatar(
+                            genderProvider: genderProvider,
+                            image: imageList[0],
+                            color: mainGrey,
+                          ))),
+            );
+          });
     });
   }
 }

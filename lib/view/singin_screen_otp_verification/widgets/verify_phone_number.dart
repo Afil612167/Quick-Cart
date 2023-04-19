@@ -1,11 +1,11 @@
 import 'package:e_store/controller/signin_controller.dart';
-import 'package:e_store/view/home_screen/home_screen.dart';
+import 'package:e_store/servieces/firebse_current_user.dart';
+import 'package:e_store/view/account_screen/subscreens/edit_profile_screen/services/firestore_set.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:e_store/view/successful_sign_in/successful_signin_screen.dart';
-import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
 
@@ -35,7 +35,8 @@ class VerifyPhNumberButton extends StatelessWidget {
 
             // Sign the user in (or link) with the credential
             await auth.signInWithCredential(credential);
-            Get.offAll(SuccessfullSignInScreen());
+            await updateGender()
+                .then((value) => Get.offAll(SuccessfullSignInScreen()));
           } catch (e) {
             Get.snackbar('wrong otp', 'Retry',
                 snackPosition: SnackPosition.BOTTOM,

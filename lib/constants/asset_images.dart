@@ -18,6 +18,7 @@ const String wishListIcon = 'assets/images/wishlist_icon.png';
 const String customerCare = 'assets/images/customer_care.png';
 const String termsContition = 'assets/images/terms_contitions1.png';
 const String shopIcon = 'assets/images/shop_icon1.png';
+const String placeholder= 'assets/images/placeholder.jpg';
 // const String backIcon = 'assets/images/back_icon.png';
 
 //asset lottie

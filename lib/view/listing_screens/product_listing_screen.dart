@@ -4,8 +4,6 @@ import 'package:e_store/view/common_widget/custom_button.dart';
 import 'package:e_store/view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 

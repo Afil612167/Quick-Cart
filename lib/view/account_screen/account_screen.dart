@@ -3,6 +3,7 @@ import 'package:e_store/constants/colors.dart';
 import 'package:e_store/view/account_screen/widgets/account_main_details.dart';
 import 'package:e_store/view/account_screen/widgets/account_settings_area.dart';
 import 'package:e_store/view/account_screen/widgets/earn_with_quickcart.dart';
+import 'package:e_store/view/account_screen/widgets/logout_button.dart';
 import 'package:e_store/view/account_screen/widgets/questions_about_us.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
+      physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(
         children: [
           Container(
@@ -36,7 +37,11 @@ class AccountScreen extends StatelessWidget {
           const Padding(padding: EdgeInsets.only(top: 10)),
           const EarnWithQuikcartArea(),
           const Padding(padding: EdgeInsets.only(top: 10)),
-          const QuestionsAboutUsArea()
+          const QuestionsAboutUsArea(),
+          Padding(
+            padding: EdgeInsets.only(top: 15, bottom: 15),
+            child: LogoutButtton(width: width),
+          )
         ],
       ),
     );

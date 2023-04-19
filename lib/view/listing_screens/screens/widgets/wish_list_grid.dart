@@ -1,35 +1,25 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-// ignore_for_file: must_be_immutable
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_store/view/details_screen/details_screen.dart';
-import 'package:e_store/view/home_screen/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-import 'package:e_store/constants/colors.dart';
-import 'package:e_store/controller/product_controller.dart';
-import 'package:e_store/model/product_model.dart';
 import 'package:get/get.dart';
 
-import '../../constants/asset_images.dart';
-import 'rating_fild.dart';
+import '../../../../constants/colors.dart';
+import '../../../../controller/product_controller.dart';
+import '../../../common_widget/rating_fild.dart';
+import '../../../details_screen/details_screen.dart';
 
-class ProductGrid extends StatelessWidget {
+class WishListGrid extends StatelessWidget {
   double height;
   double width;
   ProductController provider;
-  List<Product> currentProduct;
-  List discountPrizeCurrentProduct;
+  final AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot;
 
-  ProductGrid({
+  WishListGrid({
     Key? key,
     required this.height,
     required this.width,
     required this.provider,
-    
-    required this.currentProduct,
-    required this.discountPrizeCurrentProduct,
+    required this.snapshot,
   }) : super(key: key);
 
   @override
@@ -40,7 +30,7 @@ class ProductGrid extends StatelessWidget {
         child: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: currentProduct.length,
+          itemCount: snapshot.data!.docs.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.8,
@@ -60,26 +50,17 @@ class ProductGrid extends StatelessWidget {
                       AspectRatio(
                           aspectRatio: 1.2,
                           child: SizedBox(
-                              child: CachedNetworkImage(
-                              imageUrl: provider
-                                  .currentProduct[index]
-                                  .thumbnail,
-                              placeholder: (context, url) => Image.asset(
-                                placeholder,
-                                fit: BoxFit.contain,
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            ))),
+                              child: Image.network(
+                                  snapshot.data!.docs[index]['thumbnail']))),
                       const Spacer(
-                        flex: 2,
+                        flex: 1,
                       ),
                       Row(
                         children: [
                           const Padding(padding: EdgeInsets.only(left: 10)),
                           Flexible(
                             child: Text(
-                              currentProduct[index].title,
+                              snapshot.data!.docs[index]["title"],
                               style:
                                   const TextStyle(fontWeight: FontWeight.w400),
                               overflow: TextOverflow.ellipsis,
@@ -91,7 +72,7 @@ class ProductGrid extends StatelessWidget {
                         children: [
                           const Padding(padding: EdgeInsets.only(left: 10)),
                           RatingIndicator(
-                            rating: currentProduct[index].rating,
+                            rating: snapshot.data!.docs[index]['rating'],
                             itemSize: 12,
                           ),
                         ],
@@ -101,14 +82,15 @@ class ProductGrid extends StatelessWidget {
                           const Padding(padding: EdgeInsets.only(left: 10)),
                           Text.rich(
                             TextSpan(
-                              text: '\$ ${discountPrizeCurrentProduct[index]} ',
+                              text:
+                                  '\$ ${snapshot.data!.docs[index]['discountPrizeCurrentProduct']} ',
                               style: const TextStyle(
                                   color: mainPink, fontWeight: FontWeight.w500),
                               children: [
                                 TextSpan(
                                   text:
                                       //for discount prize calculating
-                                      " \$ ${currentProduct[index].price.toInt()}",
+                                      " \$ ${snapshot.data!.docs[index]['price']}",
                                   style: TextStyle(
                                       decoration: TextDecoration.lineThrough,
                                       fontSize: 18,
@@ -122,7 +104,7 @@ class ProductGrid extends StatelessWidget {
                           Card(
                             color: secondaryPink,
                             child: Text(
-                              " ${currentProduct[index].discountPercentage.toInt()}%",
+                              " ${snapshot.data!.docs[index]["discountPercentage"].toInt()}%",
                               style: const TextStyle(color: mainPink),
                             ),
                           ),
@@ -133,7 +115,21 @@ class ProductGrid extends StatelessWidget {
                       ),
                       const Spacer(
                         flex: 1,
-                      )
+                      ),
+                      Container(
+                        width: width / 2 - 40,
+                        height: 27,
+                        decoration: BoxDecoration(border: Border.all()),
+                        child: Center(
+                          child: Text(
+                            'Add to Cart',
+                            style: TextStyle(color: mainPink),
+                          ),
+                        ),
+                      ),
+                      const Spacer(
+                        flex: 1,
+                      ),
                     ],
                   ),
                 ),

@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'package:e_store/constants/asset_images.dart';
+import 'package:e_store/controller/product_controller.dart';
 import 'package:e_store/view/home_screen/home_screen.dart';
 import 'package:e_store/view/intro_screen/intro_screen.dart';
+import 'package:e_store/view/signin_screen_otp/signin_screen_otp.dart';
 import 'package:e_store/view/splash_screen/widgets/gradient.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/colors.dart';
 
@@ -71,10 +72,14 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 whereToGo() async {
-  String? user = FirebaseAuth.instance.currentUser!.phoneNumber;
-  print(user);
-  if (user != null)
-    Get.offAll(HomeScreen());
-  else
-    Get.offAll(OnBoardingScreen());
+  try {
+    String? user = FirebaseAuth.instance.currentUser!.phoneNumber;
+    print(user);
+    if (user != null)
+      Get.offAll(HomeScreen());
+    else
+      Get.offAll(OnBoardingScreen());
+  } catch (e) {
+    Get.offAll(SignInScreenOtp());
+  }
 }

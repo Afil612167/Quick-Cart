@@ -1,15 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../../servieces/firebse_current_user.dart';
 
-Future updateName({required String firstName, required String lastName}) async {
-  String mobileNo = FirebaseAuth.instance.currentUser!.phoneNumber.toString();
-  final docUser = FirebaseFirestore.instance
-      .collection("user")
-      .doc(mobileNo)
-      .collection("User Info").doc();
+Future updateNameGender(
+    {required String firstName,
+    required String lastName,
+    required bool gender}) async {
   final json = {
     "firstName": firstName,
     "secondName": lastName,
+    "gender": gender,
     "lastUpdate": DateTime.now()
   };
   try {
@@ -17,4 +15,17 @@ Future updateName({required String firstName, required String lastName}) async {
   } catch (e) {
     print("Firestore Name Exception is $e");
   }
+}
+
+Future updateGender() async {
+  final gender = {
+    'gender': true,
+    "firstName": 'QuickCart',
+    "secondName": 'Customer',
+  };
+  try {
+    if (await firestoreCollections.isEmpty == false) {
+      await docUser.set(gender);
+    }
+  } catch (e) {}
 }
