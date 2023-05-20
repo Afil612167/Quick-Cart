@@ -1,7 +1,6 @@
 # e_store
 
-A new Flutter project.
-
+A new Flutter project with firebase crud.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
