@@ -1,15 +1,11 @@
 # e_store
+*(I deleated the backend of the app so otp auth will not work but i integrated in code section it is open source anyone can copy )
+A flutter e commerce app with only favourite add process 
 
-A new Flutter project with firebase crud.
-## Getting Started
+Features 
+* Firebase Firestore 
+* Firebase Storage
+* Otp Authendication
 
-This project is a starting point for a Flutter application.
+Here is few screenshots
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
